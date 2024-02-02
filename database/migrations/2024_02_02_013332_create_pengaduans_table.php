@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('tgl_pengaduan');
             $table->char('nik', 16);
+            $table->foreign('nik')->references('nik')->on('masyarakats');
             $table->text('isi_laporan');
             $table->string('foto', 255);
             $table->enum('0',['proses','selesai']);
