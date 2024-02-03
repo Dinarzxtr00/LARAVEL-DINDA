@@ -25,8 +25,6 @@ class PetugassSeeder extends Seeder
                 'telp' => Str::random(13),
                 'status' => collect(['proses', 'selesai'])->random(),
             ]);
-        } else {
-            $this->command->info('No existing petugass found to seed.');
-        }
+        } 
     }
 }

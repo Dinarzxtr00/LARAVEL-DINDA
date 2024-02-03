@@ -25,8 +25,6 @@ class TanggapansSeeder extends Seeder
                 'tanggapan' => Str::random(),
                 'petugas_id' => $petugasIds[array_rand($petugasIds)],
             ]);
-        } else {
-            $this->command->info('No existing tanggapans, pengaduans, or petugass found to seed.');
-        }
+        } 
     }
 }

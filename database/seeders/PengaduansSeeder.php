@@ -25,8 +25,6 @@ class PengaduansSeeder extends Seeder
                 'foto' => Str::random(225),
                 'status' => collect(['proses', 'selesai'])->random(),
             ]);
-        } else {
-            $this->command->info('No existing pengaduans found to seed.');
-        }
+        } 
     }
 }
