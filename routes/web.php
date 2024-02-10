@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SppController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,10 +12,19 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::View('/template', 'template.master');
+//Route::view('/template', 'template.master');
 
+Route::view('/project', 'template.projek');
+
+Route::controller(SppController::class)->group(function(){
+    Route::get('/spp', 'index')->name('spp.index');
+    Route::get('/spp/create', 'create')->name('spp.create');
+    Route::post('/spp', 'store')->name('spp.store');
+    Route::get('/spp/{id}/edit','edit')->name('spp.edit');
+    Route::put('/spp/{id}','update')->name('spp.update');
+    Route::delete('/spp/{id}','destroy')->name('spp.destroy');
+    });
