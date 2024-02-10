@@ -1,18 +1,27 @@
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">@yield('header')</h1>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-3">
+          <div class="col-sm-12">
+            <h1 class="m-0">Starter Page</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-12">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
     </div>
+    <!-- /.content-header -->
 
-    <!-- Main Content -->
+    <!-- Main content -->
     <div class="content">
-        <div class="container-fluid">
+      <div class="container-fluid">
         <div class="row">
-            @yield('content')
+    @yield('content'); 
         </div>
-        <!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
     <!-- /.content -->
-</div>
+  </div>
