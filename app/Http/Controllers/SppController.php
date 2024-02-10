@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class SppController extends Controller
@@ -9,13 +8,12 @@ class SppController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        //
-        $keyword = $request->keyword;
-
-        $spps =DB::table("spps")->where('tahun','LIKE','%'.$keyword.'%')->get();
-        return view("spp.index", compact("spps"));
+        // fetching data dari tabel spps
+        $spps = DB::table('spps')->get();
+        // return ke view dan kirirmkan data $spps
+        return view('spp.index', compact('spps'));
     }
 
     /**
@@ -24,7 +22,7 @@ class SppController extends Controller
     public function create()
     {
         //
-        return view("spp.create");
+        return view('spp.create');
     }
 
     /**
@@ -32,17 +30,19 @@ class SppController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi data inputan data wajib diisi dan minimal 5 karakter
         $request->validate([
-            'tahun'=>  "required|min:4",
-            'nominal'=>  "required",
-           ]);
-
-           $query = DB::table("spps")->insert([
-            'tahun' => $request['tahun'],
-            'nominal' => $request['nominal'],
-           ]);
-           return redirect()->route('spp.index')->with(['success'=>'Data Telah Ditambahkan']);
+            'tahun'  => 'required|min:4',
+            'nominal'  => 'required',
+        ]);
+    
+        // Query Untuk menyimpan data
+        $query = DB::table('spps')->insert([
+            'tahun'  => $request['tahun'],
+            'nominal'  => $request['nominal'],
+        ]);
+        // Jika data disimpan maka di redirect ke halaman index
+        return redirect()->route('spp.index')->with(['success' => 'Data Berhasil ditambahkan']);;
     }
 
     /**
@@ -51,6 +51,8 @@ class SppController extends Controller
     public function show(string $id)
     {
         //
+        $sppsShow = DB::table('spps')->where('id_spps', $id)->first();
+        return view("spp.show", compact('sppsShow'));
     }
 
     /**
@@ -58,9 +60,10 @@ class SppController extends Controller
      */
     public function edit(string $id)
     {
-        //
-        $spp = DB::table("spps")->where("id_spp", $id)->first();
-        return view("spp.edit", compact("spp"));
+        //Mengambil data dari database
+        $spp = DB::table('spps')->where('id_spps', $id)->first();
+        // menampilkan view edit data
+        return view('spp.edit', compact('spp'));
     }
 
     /**
@@ -68,20 +71,21 @@ class SppController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        $request->validate([
-            'tahun'=>  "required|min:4",
-            'nominal'=>  "required",
-           ]);
+         //validasi data inputan data wajib diisi dan minimal 5 karakter
+         $request->validate([
+            'tahun'  => 'required|min:4',
+            'nominal'  => 'required',
+        ]);
 
-           $query = DB::table("spps")
-           ->where('id_spp', $id)
-           ->update([
-            'tahun' => $request['tahun'],
-            'nominal' => $request['nominal'],
-           ]);
-    
-           return redirect()->route('spp.index')->with(['success'=>'Data Telah Diupdate']);
+        // Query Untuk menyimpan data
+        $query = DB::table('spps')
+        ->where('id_spps', $id)
+        ->update([
+            'tahun'  => $request['tahun'],
+            'nominal'  => $request['nominal'],
+        ]);
+        // Jika data disimpan maka di redirect ke halaman index
+        return redirect()->route('spp.index')->with(['success' => 'Data Berhasil diupdate']);;
     }
 
     /**
@@ -90,8 +94,7 @@ class SppController extends Controller
     public function destroy(string $id)
     {
         //
-        $query = DB::table('spps')->where('id_spp',$id)->delete();
-        return redirect()->route('spp.index')->with(['success'=>'Data Telah Dihapus']);
+        $query = DB::table('spps')->where('id_spps', $id)->delete();
+        return redirect()->route('spp.index')->with(['succss' => 'Data Telah Di Destroy']);
     }
-    
 }
