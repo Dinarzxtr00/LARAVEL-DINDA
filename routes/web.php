@@ -43,8 +43,15 @@ Route::view('/tos', 'tos');
 
 Route::get('/hello', function(){
     return "Selamat Welcome!";
+<<<<<<< HEAD
 })->name('dinarr');
 
 Route::post('/hai', function(){
     return 'Hi, test';
+=======
+})->name('dindaa');
+
+Route::post('/hai', function(){
+    return 'Hi, aku cewe jeno';
+>>>>>>> 3bf5f43c12d9e0a17b9ec95be24a6b38dad804e3
 });
