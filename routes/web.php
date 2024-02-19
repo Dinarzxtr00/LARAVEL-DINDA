@@ -5,7 +5,7 @@ use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
-	@@ -8,23 +9,25 @@
+|--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::controller(SPPController::class)->group(function () {
     Route::get('/spp', 'index')->name('spp.index');
     Route::get('/spp/create', 'create')->name('spp.create');
