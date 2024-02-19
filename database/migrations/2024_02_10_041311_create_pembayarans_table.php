@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(table: 'pembayarans', callback: function (Blueprint $table) {
-            $table->id(column: 'id_pembayarans');
-            $table->foreignId(column: 'id_petugass')->references(column: 'id_petugass')->on(table: 'petugass');
-            $table->char(column: 'nis', length:10);
-            $table->foreign($column: 'nis')->references($column: 'nis')->on(table: 'siswas');
-            $table->date(column: 'tgl_dibayar');
-            $table->string(column: 'bulan_dibayar', length:8);
-            $table->string(column: 'tahun_dibayar', length:4);
-            $table->foreignId(column: 'id_spps')->references(column: 'id_spps')->on(table: 'siswa');
-            $table->integer(column: 'jumlah_bayar');
+        Schema::create('pembayarans', function (Blueprint $table) {
+            $table->id('id_pembayaran');
+            $table->foreignId('id_petugas')->references('id_petugas')->on('petugass');
+            $table->string('nisn', 10);
+            $table->foreign('nisn')->references('nisn')->on('siswas');
+            $table->date('tgl_bayar');
+            $table->string('bulan_dibayar', 8);
+            $table->string('tahun_dibayar', 4);
+            $table->foreignId('id_spp')->references('id_spp')->on('siswas');
+            $table->integer('jumlah_bayar');
             $table->timestamps();
         });
     }
